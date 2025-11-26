@@ -1,1 +1,50 @@
+/* custom.css - small tweaks, glass effect */
+body { 
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; 
+}
 
+.bg-white\/5 { 
+    background-color: rgba(255,255,255,0.05); 
+}
+
+.bg-white\/3 { 
+    background-color: rgba(255,255,255,0.03); 
+}
+
+/* subtle card glass */
+.rounded-2xl { 
+    border-radius: 1rem; 
+}
+
+.shadow-xl { 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4); 
+}
+
+/* nicer link hover */
+a:hover { 
+    opacity: 0.95; 
+    transition: opacity .15s ease; 
+}
+
+/* small responsive tweak */
+@media (max-width: 640px) {
+  .text-4xl { 
+      font-size: 2rem; 
+  }
+}
+
+/* =============================== */
+/* ✔ FIX: Make input text black    */
+/* =============================== */
+input, textarea {
+    color: black !important;
+}
+
+/* =============================== */
+/* ✔ FIX: Make placeholder black   */
+/* =============================== */
+input::placeholder,
+textarea::placeholder {
+    color: black !important;
+    opacity: 1 !important;
+}
