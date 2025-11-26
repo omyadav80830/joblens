@@ -1,22 +1,27 @@
-@app.route("/login", methods=["GET", "POST"])
-def login():
-    if request.method == "POST":
-        email = request.form.get("email")
-        password = request.form.get("password")
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
 
-        conn = get_db()
-        cur = conn.cursor()
+<h2>Login</h2>
 
-        cur.execute("SELECT * FROM users WHERE email=? AND password=?", (email, password))
-        user = cur.fetchone()
+<form method="POST" action="/login">
+    <label>Email:</label>
+    <input type="email" name="email" required>
 
-        conn.close()
+    <br><br>
 
-        if user:
-            session["user_id"] = user["id"]
-            return redirect(url_for("dashboard"))
-        else:
-            flash("Invalid email or password")
-            return redirect(url_for("login"))
+    <label>Password:</label>
+    <input type="password" name="password" required>
 
-    return render_template("login.html")
+    <br><br>
+
+    <button type="submit">Login</button>
+</form>
+
+</body>
+</html>
