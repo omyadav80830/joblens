@@ -8,3 +8,7 @@ nltk==3.8.1
 Werkzeug==3.0.0
 gunicorn
 pdfminer.six
+lxml
+cffi
+cryptography
+
