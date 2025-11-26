@@ -336,6 +336,29 @@ def admin_dashboard():
     <p>Total Resume Uploads: {uploads}</p>
     <p>Total Job Searches: {searches}</p>
     """
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        email = request.form.get("email")
+        password = request.form.get("password")
+
+        conn = get_db()
+        cur = conn.cursor()
+
+        cur.execute("SELECT * FROM users WHERE email=? AND password=?", (email, password))
+        user = cur.fetchone()
+
+        conn.close()
+
+        if user:
+            session["user_id"] = user["id"]
+            return redirect(url_for("dashboard"))
+        else:
+            flash("Invalid email or password")
+            return redirect(url_for("login"))
+
+    return render_template("login.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
+
