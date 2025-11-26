@@ -1,0 +1,26 @@
+{% extends "search.html" %}
+{% block results %}
+  {% if results %}
+    <div class="grid gap-4">
+      {% for job in results %}
+        <div data-aos="fade-up" class="p-4 rounded-lg bg-white/4 border border-white/6">
+          <div class="flex items-start justify-between">
+            <div>
+              <div class="text-lg font-semibold text-white">{{ job.title }}</div>
+              <div class="text-sm text-gray-300">{{ job.company.display_name if job.company else '' }}</div>
+              <div class="text-xs text-gray-400">{{ job.location.display_name if job.location else '' }}</div>
+            </div>
+            <div class="text-sm text-gray-200">{{ job.salary_is_predicted and 'Salary (predicted)' or '' }}</div>
+          </div>
+          <div class="mt-3 text-sm text-gray-300">{{ job.description[:220] }}...</div>
+          <div class="mt-3 flex items-center justify-between">
+            <a href="{{ job.redirect_url }}" target="_blank" class="px-3 py-2 rounded bg-indigo-500/80 hover:bg-indigo-600 text-sm">View Job</a>
+            <div class="text-xs text-gray-400">{{ job.created }} </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="p-6 text-center text-gray-300">No jobs found. Try different keywords or location.</div>
+  {% endif %}
+{% endblock %}

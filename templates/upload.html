@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-2xl mx-auto bg-white/5 p-6 rounded-xl shadow-lg" data-aos="zoom-in">
+  <h2 class="text-2xl font-bold mb-3">Upload Resume or Paste LinkedIn</h2>
+  <form method="post" enctype="multipart/form-data" class="space-y-4">
+    <div class="grid md:grid-cols-2 gap-3">
+      <input name="name" placeholder="Name (optional)" class="p-3 rounded bg-white/6 w-full" />
+      <input name="email" type="email" placeholder="Email (optional)" class="p-3 rounded bg-white/6 w-full" />
+    </div>
+
+    <div>
+      <label class="block mb-2 text-sm">Choose source</label>
+      <select name="source_type" class="p-3 rounded bg-white/6 w-full">
+        <option value="resume">Upload Resume (pdf/docx/txt)</option>
+        <option value="linkedin">Paste LinkedIn Summary</option>
+      </select>
+    </div>
+
+    <div id="file-section">
+      <label class="block mb-2 text-sm">File</label>
+      <input type="file" name="file" class="w-full" />
+    </div>
+
+    <div id="linkedin-section" style="display:none;">
+      <label class="block mb-2 text-sm">Paste LinkedIn summary</label>
+      <textarea name="linkedin_text" rows="7" class="w-full p-3 rounded bg-white/6"></textarea>
+    </div>
+
+    <div class="flex items-center space-x-3">
+      <button type="submit" class="px-4 py-2 rounded-md bg-gradient-to-r from-indigo-400 to-pink-400 font-semibold text-black">Submit</button>
+      <a href="{{ url_for('home') }}" class="text-sm text-gray-300">Cancel</a>
+    </div>
+  </form>
+
+  <div class="mt-4 text-xs text-gray-400">
+    Allowed: pdf, docx, txt. If your resume is an image (scanned), convert with OCR externally for now.
+  </div>
+</div>
+
+<script>
+const sel = document.querySelector('select[name="source_type"]');
+const fileS = document.getElementById('file-section');
+const linkS = document.getElementById('linkedin-section');
+sel.addEventListener('change', ()=> {
+  if(sel.value === 'linkedin'){ fileS.style.display='none'; linkS.style.display='block'; }
+  else { fileS.style.display='block'; linkS.style.display='none'; }
+});
+</script>
+{% endblock %}

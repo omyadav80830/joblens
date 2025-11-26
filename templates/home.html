@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="grid md:grid-cols-2 gap-8 items-center">
+  <div data-aos="fade-right" class="space-y-6">
+    <h1 class="text-4xl font-extrabold">Find jobs that match your resume — instantly.</h1>
+    <p class="text-gray-200">Upload your resume or paste your LinkedIn summary. JobLens extracts the right skills and suggests real-time jobs from the web.</p>
+    <div class="flex space-x-3">
+      <a href="{{ url_for('upload') }}" class="px-5 py-3 rounded-md bg-gradient-to-r from-indigo-400 to-pink-400 text-black font-semibold shadow-lg">Upload Resume</a>
+      <a href="{{ url_for('search_jobs') }}" class="px-5 py-3 rounded-md border border-white/20">Search Jobs</a>
+    </div>
+
+    <div class="mt-6 text-sm text-gray-300">
+      <strong>Quick demo resume:</strong>
+      <a href="/mnt/data/Computer-Science-Engineering-Student-Resume-Sample.pdf" class="underline text-indigo-200 ml-2">Open sample PDF</a>
+    </div>
+  </div>
+
+  <div data-aos="fade-left" class="bg-white/5 rounded-2xl p-6 shadow-xl">
+    <div class="text-sm text-gray-300 mb-4">Try uploading a resume (PDF/DOCX/TXT) or paste LinkedIn summary</div>
+    <div class="grid gap-3">
+      <a href="{{ url_for('upload') }}" class="block p-4 rounded-lg bg-white/3 hover:bg-white/6">Upload Resume — extract skills & search jobs</a>
+      <a href="{{ url_for('search_jobs') }}" class="block p-4 rounded-lg bg-white/3 hover:bg-white/6">Search Jobs — try keywords</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
